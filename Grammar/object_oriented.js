@@ -31,5 +31,4 @@ const dog2 = new Dog('doggy', 'ralf');
 const cat2 = new Cat('catty', 'meow');
 
 dog2.say();
-cat2.say();
-
+cat2.say(); 
