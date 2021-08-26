@@ -190,3 +190,64 @@ const numbers = [1, 2, 3, 4, 5];
 const spreadNumbers = [...numbers, 1000, ...numbers];
 
 console.log(spreadNumbers);
+
+// REST //
+const purpleCuteSlime = {
+    name: 'slime',
+    attribute: 'cute',
+    color: 'purple'
+};
+
+const { color, ...rest } = purpleCuteSlime;
+console.log(color);
+console.log(rest);
+
+const { attribute, ...slime } = cuteSlime;
+console.log(slime);
+
+const numbers = [0, 1, 2, 3, 4, 5];
+
+const [one, two, ...rest] = numbers; // rest가 먼저 올 수는 없음
+console.log(one);
+console.log(two);
+console.log(rest); 
+
+// REST IN PARAMETER //
+function sum(...rest) {
+    return rest.reduce((acc, current) => acc + current, 0);
+}
+
+console.log(sum(1,2,3,4,5,6,7,8));
+
+// SPREAD IN ARGUMENT //
+function subtract(x, y) {
+    return x - y;
+}
+
+const numbers = [1, 2];
+const result = subtract(...numbers); // subtract(numbers[0], numbers[1]) 과 같다
+console.log(result);
+
+// QUIZ //
+function max(...rest) {
+    const result = rest[0];
+    for (let i = 1; i < rest.length; i++) {
+        if (result < rest[i]) {
+            result = rest[i];
+        }
+    }
+    return result
+}
+
+const result = max(1, 2, 3, 4, 10, 5, 6, 7);
+console.log(result);
+
+// SOLUTION2
+function max(...numbers) {
+    return numbers.reduce((acc, current) => (
+      current < acc ? acc : current
+    ), numbers[0])
+  }
+  
+  const result = max(1, 2, 3, 4, 10, 5, 6, 7);
+  console.log(result);
