@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useRef } from 'react';
 
 // 여러개의 인풋 관리하기
 function MultipleInput() {
@@ -6,6 +6,7 @@ function MultipleInput() {
         name: '',
         nickname: '',
     });
+    const nameInput = useRef();
     const { name, nickname } = inputs;
 
     const onChange = (e) => {  
@@ -21,11 +22,13 @@ function MultipleInput() {
             name: '',
             nickname: ''
         })
+        // useRef 사용. 초기화 버튼을 눌렀을 때 name 으로 focus를 바꿈.
+        nameInput.current.focus();
     }
 
     return(
         <div>
-            <input name="name" placeholder="이름" onChange={onChange} value={name}/>
+            <input name="name" placeholder="이름" onChange={onChange} value={name} ref={nameInput}/>
             <input name="nickname" placeholder="닉네임" onChange={onChange} value={nickname}/>
             <button onClick={onReset}>초기화</button>
             <div>
