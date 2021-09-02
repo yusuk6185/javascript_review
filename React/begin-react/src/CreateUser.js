@@ -20,4 +20,5 @@ function CreateUser({ username, email, onChange, onCreate }) {
     )
 }
 
-export default CreateUser;
+// React.memo -> 컴포넌트 리렌더링 방지
+export default React.memo(CreateUser);

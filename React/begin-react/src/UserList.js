@@ -1,9 +1,26 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 
 // 배열 렌더링하기
 
-function User({ user, onRemove, onToggle }) {
+const User = React.memo(function User({ user, onRemove, onToggle }) {
     const { username, email, id, active } = user;
+    useEffect(() => {
+        console.log('user 값이 설정됨')
+        console.log(user);
+        // MOUNT => 이때 하는 작업들:
+        // props -> state
+        // REST API
+        // D3 Video.js 라이브러리 사용 
+        // setInterval, setTimeout
+        return () => {
+            console.log('user 값이 바뀌기 전');
+            console.log(user);
+            // UNMOUNT => 이때 하는 작업들:
+            // clearInterval, clearTimeout
+            // 라이브러리 인스턴스 제거
+        }
+    }, [user]);
+
     return(
         <div>
             <b style={{
@@ -21,7 +38,7 @@ function User({ user, onRemove, onToggle }) {
             <button onClick={() => onRemove(id)}>삭제</button>
         </div> 
     );   
-}
+});
 
 function UserList({ users, onRemove, onToggle }) {
     return (
@@ -41,4 +58,4 @@ function UserList({ users, onRemove, onToggle }) {
     )
 }
 
-export default UserList;
+export default React.memo(UserList);
